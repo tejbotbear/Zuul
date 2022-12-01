@@ -5,19 +5,15 @@ Tej Hiremath
 */
 
 #include <iostream>
-#include <cstring>
 #include <vector>
 
 using namespace std;
-
+vector <Room*> RoomVect;
 int main() {
 
-  vector <Room*> RoomVect;
+  //  vector <Room*> RoomVect;
 
-  Room* OneTwenty = new Room();
-  RoomVect.push_back(OneTwenty);
-
-  Room* ScienceLab = new Room();
+  /*Room* ScienceLab = new Room();
   RoomVect.push_back(ScienceLab);
 
   Room* LowerCommons = new Room();
@@ -34,9 +30,11 @@ int main() {
 
   Room* SouthHall = new Room();
   RoomVect.push_back(SouthHall);
+  */
+}
 
-  cout << "hi" << endl;
-
-  
+void Test() {
+  Room* R = new Room();
+  RoomVect.push_back(R);
 
 }
