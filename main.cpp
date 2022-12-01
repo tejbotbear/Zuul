@@ -8,10 +8,9 @@ Tej Hiremath
 #include <vector>
 
 using namespace std;
-vector <Room*> RoomVect;
 int main() {
 
-  //  vector <Room*> RoomVect;
+  vector <Room*> RoomVect;
 
   /*Room* ScienceLab = new Room();
   RoomVect.push_back(ScienceLab);
@@ -34,7 +33,7 @@ int main() {
 }
 
 void Test() {
-  Room* R = new Room();
-  RoomVect.push_back(R);
+  Room* OneTwenty = new Room();
+  RoomVect.push_back(OneTwenty);
 
 }
