@@ -13,22 +13,21 @@ Tej Hiremath
 using namespace std;
 
 void CreateRooms(vector <Rooms*> &RoomVect);
+void Game (vector <Rooms*> &Roomvect, map <char[], char[]> Exits);
 
 int main() {
   vector <Rooms*> RoomVect;
-  map<string, string> Exits;
+  map<int, string> Exits;
   CreateRooms(RoomVect);
 }
 
-void CreateRooms(vector <Rooms*> &RoomVect, map <string, string> Exits) {
+void CreateRooms(vector <Rooms*> &RoomVect, map <char[], char[]> &Exits) {
 
   Rooms* OneTwenty = new Rooms();
   OneTwenty->name = "OneTwenty";
-  OneTwenty->description = "Starting room description";
+  OneTwenty->description = "You are currently in the OneTwenty lab at Sunset";
   RoomVect.push_back(OneTwenty);
   //Exits
-  Exits["OneTwenty"] = "WEST";
-  std::cout << "The exit marked to OneTwenty is " << Exits.find("OneTwenty") << endl;
 
 
   /*Rooms* OneHall = new Rooms();
@@ -37,4 +36,12 @@ void CreateRooms(vector <Rooms*> &RoomVect, map <string, string> Exits) {
   //Exits holder if needed from map
   RoomVect.push_back(OneHall);
   */
+  Game(RoomVect, Exits);
+}
+
+void Game(vector <Rooms*> &RoomVect, map <char[], char[]> &Exits) {
+  char Input[100];
+
+  cout << OneTwenty->description;
+  
 }
