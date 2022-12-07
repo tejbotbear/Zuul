@@ -8,7 +8,7 @@ class Rooms {
   char* name;
   char* description;
 
-  RoomNew() {
+  Rooms() {
     name = new char[100];
     description = new char[100];
   }
