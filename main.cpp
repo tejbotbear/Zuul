@@ -144,14 +144,14 @@ void CreateRooms(vector <Rooms*> &RoomVect) {
   NorthOneHall->RoomMap['E'] 	= RoomVect[7];
   NorthOneHall->RoomMap['S'] 	= RoomVect[2];
   MainHall->RoomMap['N'] 	= RoomVect[16];
-  MainHall->RoomMap['W'] 	= RoomVect[2];
+  MainHall->RoomMap['W'] 	= RoomVect[6];
   AHall->RoomMap['S'] 		= RoomVect[6];
   SouthOneHall->RoomMap['N'] 	= RoomVect[2];
   SouthOneHall->RoomMap['E'] 	= RoomVect[11];
   SouthOneHall->RoomMap['S'] 	= RoomVect[14];
   GHall->RoomMap['W'] 		= RoomVect[10];
   GHall->RoomMap['E'] 		= RoomVect[12];
-  GHall->RoomMap['S'] 		= RoomVect[14];
+  GHall->RoomMap['S'] 		= RoomVect[13];
   Bathroom->RoomMap['W'] 	= RoomVect[11];
   WaterFountain->RoomMap['N'] 	= RoomVect[11];
   HHall->RoomMap['N'] 		= RoomVect[10];
@@ -250,6 +250,7 @@ void Game(vector <Rooms*> &RoomVect) {
     if (CurrentRoom->Binder == true) {
       cout << "Binder" << endl;
     }
+
 
     cout << "The exits from this room are:" << endl;
     NextRoom = CurrentRoom->RoomMap['N'];
