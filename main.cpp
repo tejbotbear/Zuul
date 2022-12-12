@@ -8,7 +8,6 @@ Tej Hiremath
 #include <vector>
 #include <map>
 #include "room.h"
-#include "items.h"
 
 using namespace std;
 
@@ -26,54 +25,138 @@ void CreateRooms(vector <Rooms*> &RoomVect) {
   
   Rooms* Inventory = new Rooms();
   RoomVect.push_back(Inventory);
-  
-  Rooms* OneTwenty = new Rooms();
+
   ID = 1;
+  Rooms* OneTwenty = new Rooms();
   OneTwenty->name = "OneTwenty";
-  OneTwenty->description = "You are currently in the OneTwenty lab at Sunset";
+  OneTwenty->description = "This is the computer lab at Sunset";
+  //Hall pass item
+  OneTwenty->HallPass = true;
   RoomVect.push_back(OneTwenty);
   
-
-  Rooms* OneHall = new Rooms();
   ID = 2;
+  Rooms* OneHall = new Rooms();
   OneHall->name = "One Hall";
   OneHall->description = "It seems like you can go anywhere from here.";
   RoomVect.push_back(OneHall);
-  // Create prompt to grab hall pass.
 
-  // HallPass = true;
-
-  Rooms* Cafeteria = new Rooms();
   ID = 3;
+  Rooms* Cafeteria = new Rooms();
   Cafeteria->name = "Cafeteria";
   Cafeteria->description = "Theres so many food options here!";
+  // Food item
+  Cafeteria->Food = true;
   RoomVect.push_back(Cafeteria);
-  //Food = true;
 
-  Rooms* LowerCommons = new Rooms();
   ID = 4;
-  LowerCommons->name = "Lower Commons";
-  LowerCommons->description = "There is open seating here.";
-  RoomVect.push_back(LowerCommons);
+  Rooms* TwoHall = new Rooms();
+  TwoHall->name = "Two Hall";
+  TwoHall->description = "This is a small hallway near the cafeteria.";
+  RoomVect.push_back(TwoHall);
 
-  Rooms* MainHall = new Rooms();
   ID = 5;
+  Rooms* LowerCommons = new Rooms();
+  LowerCommons->name = "Lower Commons";
+  LowerCommons->description = "It seems this is where people come to meet with others.";
+  RoomVect.push_back(LowerCommons);
+  
+  ID = 6;
+  Rooms* NorthOneHall = new Rooms();
+  NorthOneHall->name = "North One Hall";
+  NorthOneHall->description = "This seems to be the north side of One Hall.";
+  RoomVect.push_back(NorthOneHall);
+  
+  ID = 7;
+  Rooms* MainHall = new Rooms();
   MainHall->name = "Main Hall";
-  MainHall->description = "There are quite a few offices nearby.";
+  MainHall->description = "This is the main point of enterance/exit of the building";
   RoomVect.push_back(MainHall);
 
-  Rooms* MainOffice = new Rooms();
-  ID = 6;
-  MainOffice->name = "Main Office";
-  MainOffice->description = "why are you in here? Are you in trouble?";
-  RoomVect.push_back(MainOffice);
-  //"assign pencil item"
-  //Pencil = true;
+  ID = 8;
+  Rooms* AHall = new Rooms();
+  AHall->name = "A Hall";
+  AHall->description = "This is the hall toward the north side of the school.";
+  RoomVect.push_back(AHall);
 
-  Rooms* SchoolExit = new Rooms();
-  SchoolExit->name = "School Exit";
-  SchoolExit->description = "You have left the school.";
-  RoomVect.push_back(SchoolExit);
+  ID = 9;
+  Rooms* Library = new Rooms();
+  Library->name = "Library";
+  Library->description = "There are a lot of textbooks in here.";
+  Library->RoomMap['E'] = RoomVect[6];
+  RoomVect.push_back(Library);
+
+  ID = 10;
+  Rooms* SouthOneHall = new Rooms();
+  SouthOneHall->name = "South One Hall";
+  SouthOneHall->description = "This is the southern side of One Hall.";
+  RoomVect.push_back(SouthOneHall);
+
+  ID = 11;
+  Rooms* GHall = new Rooms();
+  GHall->name = "G Hall";
+  GHall->description = "This hallway is toward the south side of the school.;";
+  RoomVect.push_back(GHall);
+
+  ID = 12;
+  Rooms* Bathroom = new Rooms();
+  Bathroom->name = "Bathroom";
+  Bathroom->description = "This is a bathroom.";
+  RoomVect.push_back(Bathroom);
+
+  ID = 13;
+  Rooms* WaterFountain = new Rooms();
+  WaterFountain->name = "Water Fountain";
+  WaterFountain->description = "You can get drinking water here.";
+  RoomVect.push_back(WaterFountain);
+
+  ID = 14;
+  Rooms* HHall = new Rooms();
+  HHall->name = "H Hall";
+  HHall->description = "This hallway is at the most southern part of the school.";
+  RoomVect.push_back(HHall);
+
+  ID = 15;
+  Rooms* HHallEnd = new Rooms();
+  HHallEnd->name = "H Hall End";
+  HHallEnd->description = "This is the end of H Hall.";
+  RoomVect.push_back(HHallEnd);
+
+  ID = 16;
+  Rooms* End = new Rooms();
+  End->name = "The Exit";
+  End->description = "You have reached the endpoint of the game!";
+  RoomVect.push_back(End);
+
+
+  OneTwenty->RoomMap['W'] 	= RoomVect[2];
+  OneHall->RoomMap['N'] 	= RoomVect[6];
+  OneHall->RoomMap['W'] 	= RoomVect[3];
+  OneHall->RoomMap['E'] 	= RoomVect[1];
+  OneHall->RoomMap['S'] 	= RoomVect[10];
+  Cafeteria->RoomMap['N'] 	= RoomVect[5];
+  Cafeteria->RoomMap['W'] 	= RoomVect[4];
+  Cafeteria->RoomMap['E'] 	= RoomVect[2];
+  TwoHall->RoomMap['E'] 	= RoomVect[3];
+  LowerCommons->RoomMap['S'] 	= RoomVect[3];
+  NorthOneHall->RoomMap['N'] 	= RoomVect[8];
+  NorthOneHall->RoomMap['W'] 	= RoomVect[9];
+  NorthOneHall->RoomMap['E'] 	= RoomVect[7];
+  NorthOneHall->RoomMap['S'] 	= RoomVect[2];
+  MainHall->RoomMap['N'] 	= RoomVect[16];
+  MainHall->RoomMap['W'] 	= RoomVect[2];
+  AHall->RoomMap['S'] 		= RoomVect[6];
+  SouthOneHall->RoomMap['N'] 	= RoomVect[2];
+  SouthOneHall->RoomMap['E'] 	= RoomVect[11];
+  SouthOneHall->RoomMap['S'] 	= RoomVect[14];
+  GHall->RoomMap['W'] 		= RoomVect[10];
+  GHall->RoomMap['E'] 		= RoomVect[12];
+  GHall->RoomMap['S'] 		= RoomVect[14];
+  Bathroom->RoomMap['W'] 	= RoomVect[11];
+  WaterFountain->RoomMap['N'] 	= RoomVect[11];
+  HHall->RoomMap['N'] 		= RoomVect[10];
+  HHall->RoomMap['S'] 		= RoomVect[15];
+  HHallEnd->RoomMap['N'] 	= RoomVect[14];
+  
   
   Game(RoomVect);
 }
@@ -83,8 +166,75 @@ void Game(vector <Rooms*> &RoomVect) {
   int i = 0;
   int s;
   s = RoomVect.size();
-  for (int i = 0; i < s, i++;) {
+  Rooms* NextRoom;
+  char Input[100];
+  //Rooms* Search = RoomVect[i];
+  //cout << "You are currently in " <<
+
+  for(int i = 0; i < s; i++) {
     Rooms* Search = RoomVect[i];
+    cout << Search->name << endl;
     cout << Search->description << endl;
+    cout << "Rooms connected are" << endl;
+    NextRoom = Search->RoomMap['N'];
+    cout << "North direction - ";
+    if(NextRoom != NULL){
+      cout << NextRoom->name << ": ";
+      cout << NextRoom->description << endl;
+    }
+    else{
+     cout << "Not outlet from here!" << endl;
+    }
+    NextRoom = Search->RoomMap['S'];
+    cout << "South direction - ";
+    if(NextRoom != NULL){
+      cout << NextRoom->name << ": ";
+      cout << NextRoom->description << endl;
+    }
+    else{
+     cout << "Not outlet from here!" << endl;
+    }
+    NextRoom = Search->RoomMap['E'];
+    cout << "East direction - ";
+    if(NextRoom != NULL){
+      cout << NextRoom->name << " :";
+      cout << NextRoom->description << endl;
+    }
+    else{
+     cout << "Not outlet from here!" << endl;
+    }
+    NextRoom = Search->RoomMap['W'];
+    cout << "West direction - ";
+    if(NextRoom != NULL){
+      cout << NextRoom->name << ": ";
+      cout << NextRoom->description << endl;
+    }
+    else{
+     cout << "Not outlet from here!" << endl;
+    }
+    cout << "\n" << endl;
   }
+
+
+ 
+  do {
+
+    If (!strcmp(Input, Drop) {
+	cout << "What item would you like to drop?" << endl;
+	cin.getline
+    }
+      
+    else if {
+
+    }
+
+	//get current room
+	//give options on where to go
+	//add in items
+	//move around
+
+    
+  } while (GameOver == false);
+  
+  
 }
