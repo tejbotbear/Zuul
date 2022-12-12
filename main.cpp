@@ -5,6 +5,7 @@ Tej Hiremath
 */
 
 #include <iostream>
+#include <cstring>
 #include <vector>
 #include <map>
 #include "room.h"
@@ -167,11 +168,15 @@ void Game(vector <Rooms*> &RoomVect) {
   int s;
   s = RoomVect.size();
   Rooms* NextRoom;
-  char Input[100];
+  Rooms* CurrentRoom;
+  bool GameOver = false;
+  char DirectionInput;
+  bool ValidDirectionInput = false;
   //Rooms* Search = RoomVect[i];
   //cout << "You are currently in " <<
 
-  for(int i = 0; i < s; i++) {
+  // Start by printing out the entire room map
+  /* for(int i = 0; i < s; i++) {
     Rooms* Search = RoomVect[i];
     cout << Search->name << endl;
     cout << Search->description << endl;
@@ -213,28 +218,107 @@ void Game(vector <Rooms*> &RoomVect) {
      cout << "Not outlet from here!" << endl;
     }
     cout << "\n" << endl;
-  }
+  }*/
 
 
- 
+  // 1. Start with first room (OneTwenty)
+  // 2. Print detals of the room, and options to navigate from this room, to one of its' connected room
+  // 3. Let use select the direction to navigate
+  // 4. Check if the user entry is correct
+  // 5. Select next room based on user entry
+  // 6. Go back to step #2
+
+  // Room ID 1 = OneTwenty(Starting Room)
+  CurrentRoom = RoomVect[1];
+
   do {
-
-    If (!strcmp(Input, Drop) {
-	cout << "What item would you like to drop?" << endl;
-	cin.getline
+    cout << "You are currently in room " << CurrentRoom->name << " ." << endl;
+    cout << CurrentRoom->description << endl;
+    cout << "The current items in the room are:" << endl;
+    if (CurrentRoom->Food == true) {
+      cout << "Food" << endl;
     }
-      
-    else if {
-
+    if (CurrentRoom->Pencil == true) {
+      cout << "Pencil" << endl;
+    }
+    if (CurrentRoom->Notebook == true) {
+      cout << "Notebook" << endl;
+    }
+    if (CurrentRoom->HallPass == true) {
+      cout << "Hall Pass" << endl;
+    }
+    if (CurrentRoom->Binder == true) {
+      cout << "Binder" << endl;
     }
 
-	//get current room
-	//give options on where to go
-	//add in items
-	//move around
+    cout << "The exits from this room are:" << endl;
+    NextRoom = CurrentRoom->RoomMap['N'];
+    if(NextRoom != NULL){
+      cout << "North: " << NextRoom->name << endl;
+    }
+    NextRoom = CurrentRoom->RoomMap['W'];
+    if(NextRoom != NULL){
+      cout << "West: " << NextRoom->name << endl;
+    }
+    NextRoom = CurrentRoom->RoomMap['E'];
+    if(NextRoom != NULL){
+      cout << "East: " << NextRoom->name << endl;
+    }
+    NextRoom = CurrentRoom->RoomMap['S'];
+    if(NextRoom != NULL){
+      cout << "South: " << NextRoom->name << endl;
+    }
 
-    
-  } while (GameOver == false);
+    do {
+
+     cout << "What direction would you like to go? ('N', 'W', 'E', 'S')" << endl;
+     cin >> DirectionInput; 
+
+     if (DirectionInput == 'N') {
+	NextRoom = CurrentRoom->RoomMap['N'];
+	if (NextRoom == NULL) {
+	  cout << "There is no room north of here." << endl;
+	}
+	else {
+	  ValidDirectionInput = true;
+	}
+      }
+      if (DirectionInput == 'W') {
+	NextRoom = CurrentRoom->RoomMap['W'];
+	if (NextRoom == NULL) {
+	  cout << "There is no room west of here." << endl;
+	}
+	else {
+	  ValidDirectionInput = true;
+	}
+      }
+      if (DirectionInput == 'E') {
+	NextRoom = CurrentRoom->RoomMap['E'];
+	if (NextRoom == NULL) {
+	  cout << "There is no room east of here." << endl;
+	}
+	else {
+	  ValidDirectionInput = true;
+	}
+      }
+      if (DirectionInput == 'S') {
+	NextRoom = CurrentRoom->RoomMap['S'];
+	if (NextRoom == NULL) {
+	  cout << "There is no room south of here." << endl;
+	}
+	else {
+	  ValidDirectionInput = true;
+	}
+      }
+    } while(ValidDirectionInput == false);
+      ValidDirectionInput = true;
+
+    CurrentRoom = NextRoom;
+    if (!strcmp(CurrentRoom->name, RoomVect[16]->name)) {
+      GameOver = true;
+    }
+
+  } while(GameOver == false);
   
   
 }
