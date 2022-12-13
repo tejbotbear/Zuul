@@ -158,7 +158,6 @@ void CreateRooms(vector <Rooms*> &RoomVect) {
   HHall->RoomMap['S'] 		= RoomVect[15];
   HHallEnd->RoomMap['N'] 	= RoomVect[14];
   
-  
   Game(RoomVect);
 }
 
@@ -172,65 +171,9 @@ void Game(vector <Rooms*> &RoomVect) {
   bool GameOver = false;
   char DirectionInput;
   bool ValidDirectionInput = false;
-  //Rooms* Search = RoomVect[i];
-  //cout << "You are currently in " <<
 
-  // Start by printing out the entire room map
-  /* for(int i = 0; i < s; i++) {
-    Rooms* Search = RoomVect[i];
-    cout << Search->name << endl;
-    cout << Search->description << endl;
-    cout << "Rooms connected are" << endl;
-    NextRoom = Search->RoomMap['N'];
-    cout << "North direction - ";
-    if(NextRoom != NULL){
-      cout << NextRoom->name << ": ";
-      cout << NextRoom->description << endl;
-    }
-    else{
-     cout << "Not outlet from here!" << endl;
-    }
-    NextRoom = Search->RoomMap['S'];
-    cout << "South direction - ";
-    if(NextRoom != NULL){
-      cout << NextRoom->name << ": ";
-      cout << NextRoom->description << endl;
-    }
-    else{
-     cout << "Not outlet from here!" << endl;
-    }
-    NextRoom = Search->RoomMap['E'];
-    cout << "East direction - ";
-    if(NextRoom != NULL){
-      cout << NextRoom->name << " :";
-      cout << NextRoom->description << endl;
-    }
-    else{
-     cout << "Not outlet from here!" << endl;
-    }
-    NextRoom = Search->RoomMap['W'];
-    cout << "West direction - ";
-    if(NextRoom != NULL){
-      cout << NextRoom->name << ": ";
-      cout << NextRoom->description << endl;
-    }
-    else{
-     cout << "Not outlet from here!" << endl;
-    }
-    cout << "\n" << endl;
-  }*/
-
-
-  // 1. Start with first room (OneTwenty)
-  // 2. Print detals of the room, and options to navigate from this room, to one of its' connected room
-  // 3. Let use select the direction to navigate
-  // 4. Check if the user entry is correct
-  // 5. Select next room based on user entry
-  // 6. Go back to step #2
-
-  // Room ID 1 = OneTwenty(Starting Room)
   CurrentRoom = RoomVect[1];
-
+  
   do {
     cout << "You are currently in room " << CurrentRoom->name << " ." << endl;
     cout << CurrentRoom->description << endl;
@@ -250,8 +193,6 @@ void Game(vector <Rooms*> &RoomVect) {
     if (CurrentRoom->Binder == true) {
       cout << "Binder" << endl;
     }
-
-
     cout << "The exits from this room are:" << endl;
     NextRoom = CurrentRoom->RoomMap['N'];
     if(NextRoom != NULL){
@@ -271,9 +212,13 @@ void Game(vector <Rooms*> &RoomVect) {
     }
 
     do {
-
-     cout << "What direction would you like to go? ('N', 'W', 'E', 'S')" << endl;
+     cout << "What direction would you like to go? ('N', 'W', 'E', 'S'). For item interactions, enter 'I' to view your current inventory." << endl;
      cin >> DirectionInput; 
+     do {
+       if (DirectionInput == 'I') {
+	 cout << "Input ';
+       }
+     }
 
      if (DirectionInput == 'N') {
 	NextRoom = CurrentRoom->RoomMap['N'];
@@ -318,8 +263,5 @@ void Game(vector <Rooms*> &RoomVect) {
     if (!strcmp(CurrentRoom->name, RoomVect[16]->name)) {
       GameOver = true;
     }
-
   } while(GameOver == false);
-  
-  
 }
