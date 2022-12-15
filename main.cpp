@@ -1,7 +1,7 @@
 /*
 Tej Hiremath
 -
--
+12/16/22
 */
 
 #include <iostream>
@@ -9,7 +9,6 @@ Tej Hiremath
 #include <vector>
 #include <map>
 #include "room.h"
-
 using namespace std;
 
 void CreateRooms(vector <Rooms*> &RoomVect);
@@ -337,6 +336,8 @@ void Game(vector <Rooms*> &RoomVect) {
 	      if (CurrentRoom->Food == true) {
 		if (DirectionInput == 'F') {
 		  cout << "Picked the food up." << endl;
+		  CurrentRoom->Food = false;
+		  RoomVect[0]->Food = true;
 		}
 	      }
 	      else {
@@ -345,6 +346,8 @@ void Game(vector <Rooms*> &RoomVect) {
 	      if (CurrentRoom->Pencil == true) {
 		if (DirectionInput == 'P') {
 		  cout << "Picked the pencil up." << endl;
+		  CurrentRoom->Pencil = false;
+		  RoomVect[0]->Pencil = true;
 		}
 	      }
 	      else {
@@ -353,6 +356,8 @@ void Game(vector <Rooms*> &RoomVect) {
 	      if (CurrentRoom->Notebook == true) {
 		if (DirectionInput == 'N') {
 		  cout << "Picked the notebook up." << endl;
+		  CurrentRoom->Notebook = false;
+		  RoomVect[0]->NoteBbook = true;
 		}
 	      }
 	      else {
@@ -361,6 +366,8 @@ void Game(vector <Rooms*> &RoomVect) {
 	      if (CurrentRoom->HallPass == true) {
 		if (DirectionInput == 'H') {
 		  cout << "Picked the hall pass up." << endl;
+		  CurrentRoom->HallPass = false;
+		  RoomVect[0]->HallPass = true;
 		}
 	      }
 	      else {
@@ -369,6 +376,8 @@ void Game(vector <Rooms*> &RoomVect) {
 	      if (CurrentRoom->Binder == true) {
 		if (DirectionInput == 'B') {
 		  cout << "Picked the binder up." << endl;
+		  CurrentRoom->Binder = false;
+		  RoomVect[0]->Binder = true;
 		}
 	      }
 	      else {
