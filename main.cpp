@@ -171,7 +171,9 @@ void Game(vector <Rooms*> &RoomVect) {
   bool GameOver = false;
   char DirectionInput;
   bool ValidDirectionInput = false;
-
+  bool LeaveInv = false;
+  int InvCount = false;
+  
   CurrentRoom = RoomVect[1];
   
   do {
@@ -214,11 +216,75 @@ void Game(vector <Rooms*> &RoomVect) {
     do {
      cout << "What direction would you like to go? ('N', 'W', 'E', 'S'). For item interactions, enter 'I' to view your current inventory." << endl;
      cin >> DirectionInput; 
-     do {
-       if (DirectionInput == 'I') {
-	 cout << "Input ';
+     if (DirectionInput == 'I') {
+       do {
+	 cout << "You are now in the inventory menu. To drop an item, enter 'D'. To pick up an item in this room, enter 'P'.";
+	 cin >> DirectionInput;
+	 if (DirectionInput == 'D') {
+	   if (InvCount = 0) {
+	     cout << "You have no items in your inventory!";
+	   }
+	   else {
+	     cout << "What would you like to drop? Enter the first letter of the item to drop it.";
+	     if (Inventory->Food == true) {
+	       cout << "Food" << endl;
+	     }
+	     if (Inventory->Pencil == true) {
+	       cout << "Pencil" << endl;
+	     }
+	     if (Inventory->Notebook == true) {
+	       cout << "Notebook" << endl;
+	     }
+	     if (Inventory->HallPass == true) {
+	       cout << "Hall Pass" << endl;
+	     }
+	     if (Inventory->Binder == true) {
+	       cout << "Binder" << endl;
+	     }
+	     cin >> DirectionInput;
+	     if (DirectionInput = 'F') {
+	       if (RoomVect[0]->Food == true) {
+		 cout << "Dropped the food." << endl;
+	       }
+	       else {
+		 cout << "You do not have this item in your inventory!" << endl;
+	       }
+	     }
+	     if (DirectionInput = 'P') {
+	       if (Inventory->Pencil true) {
+		 cout << "Dropped the pencil." << endl;
+	       }
+	       else {
+		 cout << "You do not have this item in your inventory!" << endl;
+	       }
+	     }
+	     if (DirectionInput == 'N') {
+	       if (Inventory->Notebook = true) {
+		 cout << "Dropped the notebook." << endl;
+	       }
+	       else {
+		 cout << "You do not have this item in your inventory!" << endl;
+	       }
+	     }
+	     if (DirectionInput == 'H') {
+	       if (Inventory->HallPass == true) {
+		 cout << "Dropped the hallpass." << endl;
+	       }
+	       else {
+		 cout << "You do not have this item in your inventory!" << endl;
+	       }
+	     }
+	     if (DirectionInput == 'B') {
+	       if (Inventory->Binder == true) {
+		 cout << "Dropped the binder." << endl;
+	       }
+	       else {
+		 cout << "You do not have this item in your inventory!" << endl;
+	       }
+	     }
+	   }
+	 } while(LeaveInv == false);
        }
-     }
 
      if (DirectionInput == 'N') {
 	NextRoom = CurrentRoom->RoomMap['N'];
