@@ -1,6 +1,6 @@
 /*
 Tej Hiremath
--
+This code allows the user to play the room based adventure game Zuul.
 12/16/22
 */
 
@@ -19,6 +19,7 @@ int main() {
   CreateRooms(RoomVect);
 }
 
+// Initialize rooms
 void CreateRooms(vector <Rooms*> &RoomVect) {
 
   int ID = 0;
@@ -82,7 +83,6 @@ void CreateRooms(vector <Rooms*> &RoomVect) {
   Rooms* Library = new Rooms();
   Library->name = "Library";
   Library->description = "There are a lot of textbooks in here.";
-  Library->RoomMap['E'] = RoomVect[6];
   RoomVect.push_back(Library);
 
   ID = 10;
@@ -156,6 +156,7 @@ void CreateRooms(vector <Rooms*> &RoomVect) {
   HHall->RoomMap['N'] 		= RoomVect[10];
   HHall->RoomMap['S'] 		= RoomVect[15];
   HHallEnd->RoomMap['N'] 	= RoomVect[14];
+  Library->RoomMap['E']         = RoomVect[6];
   
   Game(RoomVect);
 }
@@ -172,7 +173,6 @@ void Game(vector <Rooms*> &RoomVect) {
   bool ValidDirectionInput = false;
   bool LeaveInv = false;
   int InvCount = 0;
-  int ItemsInRoom = 0;
   CurrentRoom = RoomVect[1];
   
   do {
@@ -246,11 +246,12 @@ void Game(vector <Rooms*> &RoomVect) {
 		cout << "Binder" << endl;
 	      }
 	      cin >> DirectionInput;
-	      if (DirectionInput = 'F') {
+	      if (DirectionInput == 'F') {
 		if (RoomVect[0]->Food == true) {
 		  cout << "Dropped the food." << endl;
 		  RoomVect[0]->Food = false;
-		  CurrentRoom-Food = true;
+		  CurrentRoom->Food = true;
+		  InvCount = InvCount - 1;
 		  LeaveInv = true;
 		}
 		else {
@@ -258,11 +259,12 @@ void Game(vector <Rooms*> &RoomVect) {
 		  LeaveInv = true;
 		}
 	      }
-	      if (DirectionInput = 'P') {
+	      if (DirectionInput == 'P') {
 		if (RoomVect[0]->Pencil = true) {
 		  cout << "Dropped the pencil." << endl;
 		  RoomVect[0]->Pencil = false;
 		  CurrentRoom->Pencil = true;
+		  InvCount = InvCount - 1;
 		  LeaveInv = true;
 		}
 		else {
@@ -274,7 +276,8 @@ void Game(vector <Rooms*> &RoomVect) {
 		if (RoomVect[0]->Notebook = true) {
 		  cout << "Dropped the notebook." << endl;
 		  RoomVect[0]->Notebook = false;
-		  CurrentRoom->NoteBook = true;
+		  CurrentRoom->Notebook = true;
+		  InvCount = InvCount - 1;
 		  LeaveInv = true;
 		}
 		else {
@@ -287,6 +290,7 @@ void Game(vector <Rooms*> &RoomVect) {
 		  cout << "Dropped the hallpass." << endl;
 		  RoomVect[0]->HallPass = false;
 		  CurrentRoom->HallPass = true;
+		  InvCount = InvCount - 1;
 		  LeaveInv = true;
 		}
 		else {
@@ -299,6 +303,7 @@ void Game(vector <Rooms*> &RoomVect) {
 		  cout << "Dropped the binder." << endl;
 		  RoomVect[0]->Binder = false;
 		  CurrentRoom->Binder = true;
+		  InvCount = InvCount - 1;
 		  LeaveInv = true;
 		}
 		else {
@@ -309,8 +314,9 @@ void Game(vector <Rooms*> &RoomVect) {
 	    }
 	  }
 	  else {
-	    if (CurrentRoom->Food == false && CurrentRoom->Pencil == false && CurrentRoom->Notebook == false && CurrentRoom->HallPass == false && ) {
+	    if (CurrentRoom->Food == false && CurrentRoom->Pencil == false && CurrentRoom->Notebook == false && CurrentRoom->HallPass == false && CurrentRoom->Binder == false) {
 	      cout << "There are no items in this room." << endl;
+	      LeaveInv = true;
 	    }
 	    else {
 	      cout << "Enter the first letter of the item in this room that you would like to pick up." << endl;
@@ -318,7 +324,6 @@ void Game(vector <Rooms*> &RoomVect) {
 		cout << "Food" << endl;
 	      }
 	      if (CurrentRoom->Pencil == true) {
-		ItemsInRoom = ItemsInRoom + 1;
 		cout << "Pencil" << endl;
 	      }
 	      if (CurrentRoom->Notebook == true) {
@@ -338,55 +343,72 @@ void Game(vector <Rooms*> &RoomVect) {
 		  cout << "Picked the food up." << endl;
 		  CurrentRoom->Food = false;
 		  RoomVect[0]->Food = true;
+		  InvCount = InvCount + 1;
+		  LeaveInv = true;
 		}
-	      }
-	      else {
+		else {
 		cout << "That item is not in this room." << endl;
+		LeaveInv = true;
+		}
 	      }
 	      if (CurrentRoom->Pencil == true) {
 		if (DirectionInput == 'P') {
 		  cout << "Picked the pencil up." << endl;
 		  CurrentRoom->Pencil = false;
 		  RoomVect[0]->Pencil = true;
+		  InvCount = InvCount + 1;
+		  LeaveInv = true;
 		}
-	      }
-	      else {
+		else {
 		cout << "That item is not in this room." << endl;
+		LeaveInv = true;
+		}
 	      }
 	      if (CurrentRoom->Notebook == true) {
 		if (DirectionInput == 'N') {
 		  cout << "Picked the notebook up." << endl;
 		  CurrentRoom->Notebook = false;
-		  RoomVect[0]->NoteBbook = true;
+		  RoomVect[0]->Notebook = true;
+		  InvCount = InvCount + 1;
+		  LeaveInv = true;
 		}
-	      }
-	      else {
+		else {
 		cout << "That item is not in this room." << endl;
+		LeaveInv = true;
+		}
 	      }
 	      if (CurrentRoom->HallPass == true) {
 		if (DirectionInput == 'H') {
 		  cout << "Picked the hall pass up." << endl;
 		  CurrentRoom->HallPass = false;
 		  RoomVect[0]->HallPass = true;
+		  InvCount = InvCount + 1;
+		  LeaveInv = true;
 		}
-	      }
-	      else {
-		cout << "That item is not in this room." << endl;
+		else {
+		  cout << "That item is not in this room." << endl;
+		  LeaveInv = true;
+		}
 	      }
 	      if (CurrentRoom->Binder == true) {
 		if (DirectionInput == 'B') {
 		  cout << "Picked the binder up." << endl;
 		  CurrentRoom->Binder = false;
 		  RoomVect[0]->Binder = true;
+		  InvCount = InvCount + 1;
+		  LeaveInv = true;
 		}
-	      }
-	      else {
+		else {
 		cout << "That item is not in this room." << endl;
+		}
 	      }
 	    }
 	  }
 	} while(LeaveInv == false);
       }
+
+      // reset direction input to false
+      ValidDirectionInput = false;
       
       if (DirectionInput == 'N') {
 	NextRoom = CurrentRoom->RoomMap['N'];
@@ -426,7 +448,7 @@ void Game(vector <Rooms*> &RoomVect) {
       }
     } while(ValidDirectionInput == false);
     ValidDirectionInput = true;
-    
+
     CurrentRoom = NextRoom;
     if (!strcmp(CurrentRoom->name, RoomVect[16]->name)) {
       GameOver = true;
